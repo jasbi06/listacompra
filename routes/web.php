@@ -10,25 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'HomeController@getHome');
 
-Route::get('/', function () {
-    return view('home');
-});
 Route::get('/login', function () {
     return view('login');
 });
 Route::get('/logout', function () {
     return view('logout');
 });
-Route::get('/productos', function () {
-    return view('productos.index');
-});
-Route::get('/productos/show/{id}', function ($id) {
-    return view('productos.show',array('id'=>$id));
-});
-Route::get('/productos/create', function () {
-    return view('productos.create');
-});
-Route::get('/productos/edit/{id}', function ($id) {
-    return view('productos.edit',array('id'=>$id));
+
+Route::group(['prefix' => 'productos'], function() {
+    Route::get('/', 'ProductoController@getIndex');
+
+    Route::get('/show/{id}', 'ProductoController@getShow');
+
+    Route::get('/create', 'ProductoController@getCreate');
+
+    Route::get('/edit/{id}', 'ProductoController@getEdit');
 });
