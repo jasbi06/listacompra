@@ -11,11 +11,29 @@
         </div>
         <div class="col-sm-8">
 
-            <h4>Nombre : {{$producto[0]}}</h4>
-            <h4>Categoria: {{$producto[1]}}</h4>
-            <h3>Estado : Producto comprado</h3>
-            <a class="btn btn-danger" href="#">Pendiente de compra</a>
-            <a class="btn btn-warning" href="{{ url('/productos/edit/' . $id ) }}">Editar</a>
+            <h4>Nombre : {{$producto->nombre}}</h4>
+            <h4>Categoria: {{$producto->categoria}}</h4>
+                <p>{{$producto->precio}}</p>
+                <p>{{$producto->descripcion}}</p>
+            @if($producto->pendiente)
+                Producto comprado
+                @php
+                    $class = "btn btn-danger";
+                    $texto = "Comprado";
+                @endphp
+            @else
+                Comprar
+                @php
+                    $class = "btn btn-success";
+                    $texto = "Comprar";
+                @endphp
+            @endif
+                <form action="{{ url('/productos/changeRented/' . $producto->id) }}" method="POST">
+                    {{ method_field('PUT') }}
+                    @csrf
+                    <input type="submit"  class="{{$class}}" value="{{$texto}}" />
+                </form>
+            <a class="btn btn-warning" href="{{ url('/productos/edit/' . $producto->id ) }}">Editar</a>
             <a class="btn btn-outline-info" href="{{ action('ProductoController@getIndex') }}">Volver al listado</a>
 
         </div>

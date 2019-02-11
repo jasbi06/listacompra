@@ -26,5 +26,11 @@ Route::group(['prefix' => 'productos'], function() {
 
     Route::get('/create', 'ProductoController@getCreate');
 
+    Route::post('/create', 'ProductoController@postCreate');
+
+    Route::put('/changeRented/{id}', 'ProductoController@changeRented');
+
     Route::get('/edit/{id}', 'ProductoController@getEdit');
+
+    Route::put('/edit/{id}', 'ProductoController@putEdit');
 });
