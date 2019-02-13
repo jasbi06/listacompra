@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Tabla productos inicializada con datos!');
     }
 
+
     public static function seedProductos(){
 
         Producto::truncate();
