@@ -14,10 +14,10 @@
 
 Route::group(['middleware'=>'auth'], function (){
 
-    Route::get('/', 'HomeController@getHome');
+    Route::get('/', 'HomeController@index');
 
 Route::group(['prefix' => 'productos'], function() {
-    Route::get('/', 'ProductoController@getIndex');
+        Route::get('/', 'ProductoController@getIndex');
 
     Route::get('/show/{id}', 'ProductoController@getShow');
 
