@@ -20,6 +20,11 @@
                             <span>&#10010</span> Nuevo Producto
                         </a>
                     </li>
+                    <li class="nav-item {{  Request::is('productos/categorias') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{url('/productos/categorias')}}">
+                             Categorias
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav navbar-right">

@@ -16,12 +16,14 @@ Route::group(['middleware'=>'auth'], function (){
 
     Route::get('/', 'HomeController@index');
 
+
 Route::group(['prefix' => 'productos'], function() {
-        Route::get('/', 'ProductoController@getIndex');
 
     Route::get('/show/{id}', 'ProductoController@getShow');
 
     Route::get('/create', 'ProductoController@getCreate');
+
+    Route::get('/categorias', 'ProductoController@getCategorias');
 
     Route::post('/create', 'ProductoController@postCreate');
 
@@ -30,6 +32,8 @@ Route::group(['prefix' => 'productos'], function() {
     Route::get('/edit/{id}', 'ProductoController@getEdit');
 
     Route::put('/edit/{id}', 'ProductoController@putEdit');
+
+    Route::get('/{cat?}', 'ProductoController@getIndex');
 });
 });
 Auth::routes();

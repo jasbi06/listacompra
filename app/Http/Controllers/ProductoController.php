@@ -7,10 +7,15 @@ use App\Producto;
 
 class ProductoController extends Controller
 {
-    public function getIndex()
+    public function getIndex($cat=null)
     {
-        $arrayProducto = Producto::all();
-        return view('productos.index', array('arrayProducto'=> $arrayProducto));
+        if (isset($cat)){
+            $arrayProducto = Producto::Categorias($cat);
+            return view('productos.index', array('arrayProducto'=> $arrayProducto));
+        }else{
+            $arrayProducto = Producto::all();
+            return view('productos.index', array('arrayProducto'=> $arrayProducto));
+        }
     }
     public function getShow($id)
     {
@@ -58,6 +63,12 @@ class ProductoController extends Controller
         $producto->pendiente = !$producto->pendiente;
         $producto->save();
         return back();
+    }
+
+    public function getCategorias()
+    {
+        $arrayCategorias = Producto::todasLasCategorias();
+        return view('productos.categoria', array('categoria'=> $arrayCategorias));
     }
 
 }   
